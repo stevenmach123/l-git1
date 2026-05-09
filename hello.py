@@ -1,8 +1,6 @@
-v=[3,4,5,1,2,3]
-l:set[int] = set()
-
+v=[3,4,5,1,2,3];
+l:list[int] =[];
 for i in range(4):
-    if i%2 !=0 or l.__contains__(v[i]):
-        l.add(v[i]*100)
-print(l)
-print(v)
+    if i%2 !=0 and not v[i] in l:
+        l.append(v[i]);
+print(l);
