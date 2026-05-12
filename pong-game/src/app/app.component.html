@@ -1,0 +1,41 @@
+<div class="game-container">
+  <div class="game-header">
+    <h1>Classic Pong Game</h1>
+  </div>
+  
+  <div class="scoreboard">
+    <div class="player-score">Player 1: {{ player1Score }}</div>
+    <div class="player-score">Player 2: {{ player2Score }}</div>
+  </div>
+  
+  <div class="game-board" #gameBoard>
+    <div 
+      class="paddle left-paddle" 
+      [style.top.px]="leftPaddleY">
+    </div>
+    
+    <div 
+      class="paddle right-paddle" 
+      [style.top.px]="rightPaddleY">
+    </div>
+    
+    <div 
+      class="ball" 
+      [style.left.px]="ballX" 
+      [style.top.px]="ballY">
+    </div>
+    
+    <div class="game-over" #gameOver *ngIf="gameOver">
+      <h2>Game Over!</h2>
+      <p>Player {{ winner }} wins!</p>
+      <button (click)="resetGame()">Play Again</button>
+    </div>
+  </div>
+  
+  <div class="controls">
+    <p>Player 1: W (up) and S (down) | Player 2: Arrow Up and Arrow Down</p>
+    <button (click)="startGame()" *ngIf="!gameStarted">Start Game</button>
+    <button (click)="pauseGame()" *ngIf="gameStarted && !gamePaused && !gameOver">Pause</button>
+    <button (click)="resumeGame()" *ngIf="gamePaused">Resume</button>
+  </div>
+</div>
