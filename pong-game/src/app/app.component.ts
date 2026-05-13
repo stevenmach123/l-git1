@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, OnDestroy } from "@angular/core";
+﻿import { Component, HostListener, OnInit, OnDestroy } from "@angular/core";
 
 @Component({
   selector: "app-root",
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.keysPressed[event.key] = true;
     
     // Start game on spacebar if not started
-    if (event.key === " " && !this.gameStarted) {
+    if (event.key === " " && !this.gameStarted && !this.gameOver) {
       this.startGame();
     }
   }
@@ -68,10 +68,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   
   startGame(): void {
-    if (this.gameOver) {
-      this.resetGame();
-    }
-    
     this.gameStarted = true;
     this.gamePaused = false;
     this.gameOver = false;
@@ -86,6 +82,11 @@ export class AppComponent implements OnInit, OnDestroy {
   resumeGame(): void {
     this.gamePaused = false;
     this.startGameLoop();
+  }
+  
+  restartGame(): void {
+    this.resetGame();
+    this.startGame();
   }
   
   startGameLoop(): void {
@@ -247,4 +248,3 @@ export class AppComponent implements OnInit, OnDestroy {
     this.stopGameLoop();
   }
 }
-

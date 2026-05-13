@@ -1,4 +1,4 @@
-<div class="game-container">
+﻿<div class="game-container">
   <div class="game-header">
     <h1>Classic Pong Game</h1>
   </div>
@@ -9,33 +9,27 @@
   </div>
   
   <div class="game-board" #gameBoard>
-    <div 
-      class="paddle left-paddle" 
-      [style.top.px]="leftPaddleY">
-    </div>
-    
-    <div 
-      class="paddle right-paddle" 
-      [style.top.px]="rightPaddleY">
-    </div>
-    
-    <div 
-      class="ball" 
-      [style.left.px]="ballX" 
-      [style.top.px]="ballY">
-    </div>
-    
-    <div class="game-over" #gameOver *ngIf="gameOver">
-      <h2>Game Over!</h2>
-      <p>Player {{ winner }} wins!</p>
-      <button (click)="resetGame()">Play Again</button>
+    <div class="paddle left-paddle" [style.top.px]="leftPaddleY"></div>
+    <div class="paddle right-paddle" [style.top.px]="rightPaddleY"></div>
+    <div class="ball" [style.left.px]="ballX" [style.top.px]="ballY"></div>
+    <div class="game-over" *ngIf="gameOver">
+      <div class="popup-overlay">
+        <div class="popup-content">
+          <h2>Game Over!</h2>
+          <p class="winner-text">Player {{ winner }} wins!</p>
+          <button (click)="restartGame()">Restart Game</button>
+        </div>
+      </div>
     </div>
   </div>
   
   <div class="controls">
-    <p>Player 1: W (up) and S (down) | Player 2: Arrow Up and Arrow Down</p>
-    <button (click)="startGame()" *ngIf="!gameStarted">Start Game</button>
-    <button (click)="pauseGame()" *ngIf="gameStarted && !gamePaused && !gameOver">Pause</button>
-    <button (click)="resumeGame()" *ngIf="gamePaused">Resume</button>
+    <div class="start-message" *ngIf="!gameStarted && !gameOver">
+      <p>Press Spacebar or click "Start Game" to begin</p>
+      <p>Player 1: W (up) and S (down) | Player 2: Arrow Up and Arrow Down</p>
+    </div>
+    <button (click)="startGame()" *ngIf="!gameStarted && !gameOver">Start Game</button>
+    <button (click)="pauseGame()" *ngIf="gameStarted && !gamePaused">Pause</button>
+    <button (click)="resumeGame()" *ngIf="gamePaused && !gameOver">Resume</button>
   </div>
 </div>
